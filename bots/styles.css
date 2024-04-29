@@ -1,0 +1,256 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('../img/03.jpg'); 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+h1 {
+  text-align: center;
+  color: #fff;
+}
+
+.bot-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; 
+}
+
+.bot {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px #fff;
+  margin: 20px;
+  padding: 20px;
+  width: 250px;
+  height: 350px; 
+  text-align: center;
+  position: relative;
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+}
+
+
+.bot h2 {
+  position: absolute;
+  top: 20px; 
+  left: 0;
+  right: 0; 
+  margin: 0 auto; 
+  color: white; /* Define a cor do texto como branco */
+}
+
+.bot button {
+  width: 80%; 
+  margin: auto; 
+  bottom: 20px; 
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bot:hover {
+  transform: translateY(-5px);
+}
+
+.payment-btn {
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 0;
+  transition: background-color 0.3s ease;
+}
+
+.payment-btn:hover {
+  background-color: #0056b3;
+}
+
+
+
+header.expandido {
+  height: 80px;
+  width: calc(100% - 300px);
+  margin-left: 300px;
+  transition: width 0.5s, margin-left 0.5s;
+}
+
+.custom-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.logo {
+  text-align: center;
+}
+
+.logo-image {
+  width: 200px;
+  height: auto;
+}
+
+.header-text p {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav.menu-lateral {
+  width: 80px;
+  height: 100%;
+  background-color: #ecf0f1;
+  padding: 40px 1%;
+  background-color: rgba(67, 66, 68, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  transition: width 0.5s;
+}
+
+.img-menu-lateral {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1px;
+}
+
+.img-menu-lateral .logo {
+  width: 60px;
+  margin-bottom: 1px;
+  margin-top: -30px;
+}
+
+nav.menu-lateral.expandir {
+  width: 300px;
+}
+
+.btn-expandir {
+  width: 100%;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.btn-expandir > i {
+  color: #ecf0f1;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+ul {
+  height: 100%;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+
+ul li.item-menu {
+  transition: 0.2s;
+  margin-bottom: 8px;
+  border-radius: 15px;
+}
+
+ul li.ativo,
+ul li.item-menu:hover {
+  background: #e6e1e1;
+  border-radius: 10px;
+  border-radius: 15px;
+}
+
+ul li.item-menu a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 15px 4%;
+  display: flex;
+  align-items: center;
+  line-height: 40px;
+  transition: color 0.3s;
+  border-radius: 15px;
+}
+
+ul li.item-menu a .txt-link {
+  margin-left: 20px;
+  transition: opacity 0.5s;
+  opacity: 0;
+}
+
+nav.menu-lateral.expandir .txt-link {
+  opacity: 1;
+}
+
+ul li.item-menu:hover a {
+  background-color: rgba(97, 99, 97, 0.4);
+}
+
+ul li.item-menu a .icon > i {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+
+nav.menu-lateral.expandir + .button-columns {
+  margin-left: 160px;
+  transition: margin-left 0.3s ease;
+  margin-left: 200px;
+}
+
+nav.menu-lateral + .button-columns {
+  margin-left: 50px;
+  transition: margin-left 0.3s ease;
+  margin-left: 100px;
+}
+
+nav.menu-lateral.expandir + .button-columns .button-column {
+  flex: 0 0 calc(23% - 10px);
+  max-width: calc(25% - 10px);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: margin-left 0.2s ease;
+}
+
+.partida {
+  background-color: rgba(255, 255, 255, 0.9); /* Cor de fundo com transparência */
+  padding: 10px; /* Diminuir o padding para reduzir o tamanho das colunas */
+  margin-bottom: 10px; /* Diminuir a margem inferior */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: margin-left 0.5s; /* Adicionar transição para acompanhar o movimento do menu lateral */
+}
+
+.menu-lateral.expandir + .partida {
+  margin-left: 300px; /* Acompanhar o movimento do menu lateral quando expandido */
+}
+
+/* Estilos para colunas quando o menu lateral está recolhido */
+.bot-list {
+  transition: all 0.3s ease-in-out; /* Adiciona transição suave */
+}
+
+/* Estilos para colunas quando o menu lateral está expandido */
+.menu-lateral.expandir + .colunas-container .bot-list {
+  margin-left: 250px; /* Largura do menu lateral */
+}
+

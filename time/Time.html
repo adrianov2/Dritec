@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dritec soccer</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</head>
+
+<body>
+<nav class="menu-lateral">
+    <div class="img-menu-lateral">
+        <img src="../img/05.png" alt="Descrição da imagem" class="logo">
+    </div>
+    <div class="btn-expandir">
+        <i class="bi bi-list" id="btn-exp"></i>
+    </div>
+
+    <ul>
+        <li class="item-menu ativo">
+            <a href="../index.html">
+                <span class="icon"><i class="bi bi-house-fill"></i></span>
+                <span class="txt-link">Home</span>
+            </a>
+        </li>
+
+        <li class="item-menu">
+            <a href="../bots/index.html">
+                <span class="icon"><i class="bi bi-robot"></i></span>
+                <span class="txt-link">Bots</span>
+            </a>
+        </li>
+
+        <li class="item-menu">
+            <a href="../time/Time.html">
+                <span class="icon"><i class="bi bi-person-lines-fill"></i></span>
+                <span class="txt-link">Time</span>
+            </a>
+        </li>
+
+        <li class="item-menu">
+            <a href="../tabela/tabela-brasileirao.html">
+                <span class="icon"><i class="bi bi-skip-end-btn-fill"></i></span>
+                <span class="txt-link">Tabela</span>
+            </a>
+        </li>
+
+        <li class="item-menu">
+            <a href="../afiliados/index.html">
+                <span class="icon"><i class="bi bi-award"></i></span>
+                <span class="txt-link">Afiliados</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<script>
+
+/*expandir e recolher menu lateral*/
+document.addEventListener("DOMContentLoaded", function() {
+    const btnExpandir = document.getElementById('btn-exp');
+    const menuLateral = document.querySelector('.menu-lateral');
+
+    btnExpandir.addEventListener('click', function() {
+        menuLateral.classList.toggle('expandir');
+    });
+});
+
+/*************FIM******************************************/
+async function getPartidaInfo(partidaId, placarText) {
+    // URL da API para obter informações do time
+    const apiUrl = `https://api.api-futebol.com.br/v1/times/${partidaId}`;
+    
+    // Elemento da partida correspondente ao ID
+    const partidaElement = document.getElementById(`partida${partidaId}`);
+
+    try {
+        // Requisição assíncrona para obter os dados do time
+        const response = await fetch(apiUrl, {
+            headers: {
+                'Authorization': 'Bearer test_7ac3aa6a12bbe5e7aaa331a5edbc6b'
+            }
+        });
+
+        // Converter a resposta da API para JSON
+        const data = await response.json();
+
+        // Inserir informações do time na página
+        const timeInfo = `
+            <div class="time-container">
+                <img src="${data.escudo}" alt="${data.nome}">
+                <div class="time-info">
+                    <p>Nome: ${data.nome}</p>
+                    <p>Sigla: ${data.sigla}</p>
+                </div>
+            </div>
+        `;
+
+        // Inserir as informações do time antes do placar da partida
+        partidaElement.insertBefore(createElementFromHTML(timeInfo), placarText.nextSibling);
+    } catch (error) {
+        // Exibir mensagem de erro no console em caso de falha na obtenção dos dados do time
+        console.error('Erro ao obter informações do time:', error);
+    }
+}
+
+// Função para criar um elemento HTML a partir de uma string de HTML
+function createElementFromHTML(htmlString) {
+    const div = document.createElement('div');
+    div.innerHTML = htmlString.trim();
+    return div.firstChild;
+}
+
+// Chamar a função para obter informações dos times para cada partida
+getPartidaInfo(1, document.getElementById('partida1').getElementsByClassName('placar')[0]);
+getPartidaInfo(2, document.getElementById('partida2').getElementsByClassName('placar')[0]);
+
+</script>
+</body>
+</html>

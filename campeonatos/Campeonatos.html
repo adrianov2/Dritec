@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campeonatos Disponíveis</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Menu Lateral -->
+    <nav class="menu-lateral">
+        <div class="img-menu-lateral">
+            <img src="./img/05.png" alt="Descrição da imagem" class="logo">
+        </div>
+        <div class="btn-expandir">
+            <i class="bi bi-list" id="btn-exp"></i>
+        </div>
+
+        <ul>
+            <li class="item-menu ativo">
+                <a href="./index.html">
+                    <span class="icon"><i class="bi bi-house-fill"></i></span>
+                    <span class="txt-link">Home</span>
+                </a>
+            </li>
+
+            <li class="item-menu">
+                <a href="./bots/index.html">
+                    <span class="icon"><i class="bi bi-robot"></i></span>
+                    <span class="txt-link">Bots</span>
+                </a>
+            </li>
+
+            <li class="item-menu">
+                <a href="./time/Time.html">
+                    <span class="icon"><i class="bi bi-person-lines-fill"></i></span>
+                    <span class="txt-link">Time</span>
+                </a>
+            </li>
+
+            <li class="item-menu">
+                <a href="./tabela/tabela-brasileirao.html">
+                    <span class="icon"><i class="bi bi-skip-end-btn-fill"></i></span>
+                    <span class="txt-link">Tabela</span>
+                </a>
+            </li>
+
+            <li class="item-menu">
+                <a href="./afiliados/index.html">
+                    <span class="icon"><i class="bi bi-award"></i></span>
+                    <span class="txt-link">Afiliados</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Campeonatos Disponíveis</h1>
+        <div id="campeonatos" class="campeonatos-container"></div>
+    </div>
+
+
+<script>
+    /*expandir e recolher menu lateral*/
+document.addEventListener("DOMContentLoaded", function() {
+    const btnExpandir = document.getElementById('btn-exp');
+    const menuLateral = document.querySelector('.menu-lateral');
+
+    btnExpandir.addEventListener('click', function() {
+        menuLateral.classList.toggle('expandir');
+    });
+});
+
+/*************FIM******************************************/
+    // Função para criar elementos HTML com os dados do campeonato
+    function createCampeonatoElement(campeonato) {
+        const campeonatoDiv = document.createElement('div');
+        campeonatoDiv.classList.add('campeonato');
+
+        const img = document.createElement('img');
+        img.src = campeonato.logo;
+        img.alt = campeonato.nome;
+        campeonatoDiv.appendChild(img);
+
+        const h2 = document.createElement('h2');
+        h2.textContent = campeonato.nome;
+        campeonatoDiv.appendChild(h2);
+
+        const temporada = document.createElement('p');
+        temporada.textContent = `Temporada: ${campeonato.edicao_atual.temporada}`;
+        campeonatoDiv.appendChild(temporada);
+
+        const status = document.createElement('p');
+        status.textContent = `Status: ${campeonato.status}`;
+        campeonatoDiv.appendChild(status);
+
+        const tipo = document.createElement('p');
+        tipo.textContent = `Tipo: ${campeonato.tipo}`;
+        campeonatoDiv.appendChild(tipo);
+
+        const regiao = document.createElement('p');
+        regiao.textContent = `Região: ${campeonato.regiao}`;
+        campeonatoDiv.appendChild(regiao);
+
+        return campeonatoDiv;
+    }
+
+    // Função para adicionar campeonatos à página
+    function addCampeonatosToPage(campeonatos) {
+        const campeonatosDiv = document.getElementById('campeonatos');
+        campeonatos.forEach(campeonato => {
+            const campeonatoElement = createCampeonatoElement(campeonato);
+            campeonatosDiv.appendChild(campeonatoElement);
+        });
+    }
+
+    // Obter os campeonatos da API e adicioná-los à página
+    fetch('https://api.api-futebol.com.br/v1/campeonatos', {
+        headers: {
+            'Authorization': 'Bearer test_7ac3aa6a12bbe5e7aaa331a5edbc6b'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        addCampeonatosToPage(data);
+    })
+    .catch(error => {
+        console.error('Erro ao obter campeonatos:', error);
+    });
+</script>
+
+</body>
+</html>

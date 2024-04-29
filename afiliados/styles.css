@@ -1,0 +1,357 @@
+/* Estilos para o corpo (body) da página */
+body {
+    font-family: Arial, sans-serif; /* Define a família de fontes para o texto do corpo */
+    margin: 0; /* Remove margens ao redor do corpo */
+    padding: 0; /* Remove preenchimento interno do corpo */
+    background-image: url('../img/03.jpg'); /* Define uma imagem de fundo para o corpo (substitua pelo nome da sua imagem) */
+    background-size: cover; /* Faz com que a imagem de fundo cubra todo o espaço disponível */
+    background-repeat: no-repeat; /* Impede a repetição da imagem de fundo */
+    background-attachment: fixed; /* Mantém a imagem de fundo fixa enquanto a página é rolada */
+    background-position: center; /* Centraliza a imagem de fundo horizontalmente e verticalmente */
+    z-index: 1; /* Define um índice Z para o corpo (utilizado em pilha de camadas) */
+    overflow: auto; /* Remova "hidden" e use "auto" para permitir a rolagem vertical */
+    height: 100vh; /* Altura da página igual a 100% da altura da viewport */
+    overflow-x: hidden; /* Remove a rolagem horizontal */
+}
+
+/* Estilos para o cabeçalho quando expandido */
+header.expandido {
+    height: 80px; /* Altura desejada quando expandido */
+    width: calc(100% - 300px);
+    margin-left: 300px;
+    transition: width 0.5s, margin-left 0.5s;
+}
+/* Estilos para o cabeçalho */
+.custom-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+/* Estilos para o logotipo e texto */
+.logo {
+    text-align: center;
+}
+
+.logo-image {
+    width: 200px; /* Ajuste o tamanho da imagem conforme necessário */
+    height: auto;
+}
+
+.header-text p {
+    margin-top: 10px; /* Espaço entre a imagem e o texto, ajuste conforme necessário */
+    font-size: 18px; /* Ajuste o tamanho do texto conforme necessário */
+    color: #fff; /* Cor do texto, ajuste conforme necessário */
+}
+
+/* Importa a fonte "Outfit" com peso 300 do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap');
+
+/* Define estilos globais para resetar margens, preenchimentos e caixa de modelagem */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos do menu lateral */
+nav.menu-lateral {
+    width: 80px;
+    height: 100%;
+    background-color: #ecf0f1;
+    padding: 40px 1%;
+    background-color: rgba(67, 66, 68, 0.4); /* Cor roxa com 80% de opacidade */
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    transition: width 0.5s;
+}
+.img-menu-lateral {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1px;
+}
+
+.img-menu-lateral .logo {
+    width: 60px; /* Ajuste o tamanho conforme necessário */
+    margin-bottom: 1px;
+    margin-top: -30px; /* Aumentado o valor da margem superior para mover mais para o topo */
+}
+
+
+
+/* Estilos do menu quando expandido */
+nav.menu-lateral.expandir {
+    width: 300px;
+ 
+}
+
+/* Botão de expansão do menu */
+.btn-expandir {
+    width: 100%;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+}
+
+/* Ícone no botão de expansão */
+.btn-expandir > i {
+    /* Cor, tamanho e cursor do ícone */
+    color: #ecf0f1;
+    font-size: 24px;
+    cursor: pointer;
+    
+}
+
+/* Lista não ordenada principal do menu */
+ul {
+    /* Altura total da janela */
+    height: 100%;
+    /* Remove estilo padrão da lista */
+    list-style-type: none;
+    /* Exibe os itens da lista em coluna */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Itens individuais do menu */
+ul li.item-menu {
+    /* Efeito de transição de 0.2s e espaçamento inferior */
+    transition: 0.2s;
+    margin-bottom: 8px;
+    border-radius: 15px; /* Borda arredondada */
+}
+
+/* Estilos para itens ativos ou em hover */
+ul li.ativo,
+ul li.item-menu:hover {
+    background: #e6e1e1;
+    border-radius: 10px;
+    border-radius: 15px; /* Borda arredondada */
+}
+
+/* Links dentro dos itens do menu */
+ul li.item-menu a {
+    color: #ffffff;/* Cor do texto, remoção de decoração, tamanho do texto e espaçamento interno */
+    text-decoration: none;
+    font-size: 16px;
+    padding: 15px 4%;
+    display: flex;/* Exibição em linha com alinhamento vertical */
+    align-items: center;
+    line-height: 40px;
+    transition: color 0.3s;/* Efeito de transição para a cor do texto */
+    border-radius: 15px; /* Borda arredondada */
+}
+
+/* Texto do link com efeito de opacidade */
+ul li.item-menu a .txt-link {
+    margin-left: 20px;
+    transition: opacity 0.5s;
+    opacity: 0;
+}
+
+/* Texto do link visível quando o menu está expandido */
+nav.menu-lateral.expandir .txt-link {
+    opacity: 1;
+    
+}
+
+/* Efeito de hover nos links */
+ul li.item-menu:hover a {
+    background-color: rgba(97, 99, 97, 0.4); /* Cor roxa com 80% de opacidade */
+}
+
+/* Ícones dentro dos links do menu */
+ul li.item-menu a .icon > i {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+/* Submenu do item do menu (inicialmente oculto) */
+.sub-menu {
+    display: none;
+    list-style: none;
+    padding-left: 0;
+    margin-left: 20px;
+    width: 90%;
+}
+
+/* Exibe o submenu quando a classe 'show' está presente */
+.sub-menu.show {
+    display: block;
+}
+
+/* Ícone de seta invertida quando o submenu está expandido */
+.txt-link.expanded i {
+    transform: rotate(180deg);
+}
+
+/* Estilos para itens individuais do submenu */
+.sub-menu li {
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    padding: 10px;
+    transition: all 0.3s ease;
+    margin-bottom: 8px;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Efeito de hover nos itens do submenu */
+.sub-menu li:hover {
+    background-color: #ecf0f1;
+    color: #2d502c;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ecf0f1;
+}
+
+/* Ajustes específicos para submenus de produção e indicadores */
+.sub-menu.producao-submenu li,
+.sub-menu.indicadores-submenu li {
+    margin-left: 0;
+}
+
+.sub-menu.producao-submenu i,
+.sub-menu.indicadores-submenu i {
+    margin-right: 10px;
+    font-size: 18px;
+    color: #000000;
+}
+/* Estilos para a seção de botões quando o menu está expandido ***********************************************************/
+nav.menu-lateral.expandir + .button-columns {
+    margin-left: 160px; /* Ajusta a margem esquerda para a largura do menu expandido */
+    transition: margin-left 0.3s ease; /* Adiciona uma transição suave para a mudança na margem esquerda */
+    margin-left: 200px; /* Ajusta a margem esquerda para a largura do menu expandido */
+}
+
+nav.menu-lateral + .button-columns {
+    margin-left: 50px; /* Ajusta a margem esquerda para a largura do menu quando não está expandido */
+    transition: margin-left 0.3s ease; /* Adiciona uma transição suave para a mudança na margem esquerda */
+    margin-left: 100px; /* Ajusta a margem esquerda para a largura do menu quando não está expandido */
+}
+
+/* Estilos para as colunas quando o menu está expandido */
+nav.menu-lateral.expandir + .button-columns .button-column {
+    flex: 0 0 calc(23% - 10px); /* Ajusta a largura das colunas quando o menu está expandido */
+    max-width: calc(25% - 10px);
+    border-radius: 15px; /* Borda arredondada */
+    overflow: hidden;
+    transition: margin-left 0.2s ease;
+}
+/**---------------------------------------------------------------------------------------------------------------------*/
+/* Estilos para a seção de afiliados */
+.affiliate-section {
+    padding: 40px;
+    margin-top: 70px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin-left: auto; /* Alinhar à direita */
+    margin-right: 90px; /* Adicionar margem à direita */
+    position: relative;
+}
+
+.affiliate-section .heading {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+}
+
+.affiliate-section .description {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+.affiliate-section .affiliate-button {
+    padding: 15px 30px;
+    font-size: 18px;
+ 
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+/* Estilos para os detalhes do programa de afiliados */
+.affiliate-details {
+    padding: 30px;
+    border-radius: 10px;
+    margin-top: 40px;
+    background-color: #ffffff;
+    color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin-left: auto; /* Alinhar à direita */
+    margin-right: 20px; /* Adicionar margem à direita */
+}
+
+.affiliate-details h2 {
+    font-size: 28px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: #313033;
+    font-family: 'Arial', sans-serif;
+}
+
+.affiliate-details p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.affiliate-details ul {
+    list-style-type: disc;
+    margin-bottom: 25px;
+    padding-left: 20px;
+}
+.affiliate-details{
+    background-color: #f8f8f8; /* Cor de fundo do botão */
+    border: 2px solid #f0f7fc; /* Cor da borda do botão */
+    border-radius: 5px; /* Borda arredondada */ 
+}
+/* Adicionar borda inferior para separar dos elementos subsequentes */
+.affiliate-details p, .affiliate-details ul {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+/* Remover a borda inferior do último elemento */
+.affiliate-details p:last-child, .affiliate-details ul:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* Estilos para uma animação suave de entrada para a seção de afiliados */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.affiliate-section {
+    animation: fadeIn 0.6s ease;
+}
+
+@media only screen and (max-width: 768px){
+    .affiliate-section, .affiliate-button, .affiliate-details{
+        width: 78%; /* Ajuste a largura conforme necessário */
+        margin-left: 20%;
+        }
+}

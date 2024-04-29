@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dritec soccer</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Tabela do Brasileirão 2024</h1>
+        
+        <!-- Exemplo para o Widget de Tabela -->
+        <div class="apifutebol-tabela" data-client-id="CLIENT_ID"></div>
+    </div>
+    
+<nav class="menu-lateral">
+    <div class="img-menu-lateral">
+        <img src="../img/05.png" alt="Descrição da imagem" class="logo">
+    </div>
+    <div class="btn-expandir">
+        <i class="bi bi-list" id="btn-exp"></i>
+    </div>
+
+    <ul>
+        <li class="item-menu ativo">
+            <a href="../index.html">
+                <span class="icon"><i class="bi bi-house-fill"></i></span>
+                <span class="txt-link">Home</span>
+            </a>
+        </li>
+
+        <li class="item-menu">
+            <a href="../bots/index.html">
+                <span class="icon"><i class="bi bi-robot"></i></span>
+                <span class="txt-link">Bots</span>
+            </a>
+        </li>
+
+        <li class="item-menu">
+            <a href="../time/Time.html">
+                <span class="icon"><i class="bi bi-person-lines-fill"></i></span>
+                <span class="txt-link">Time</span>
+            </a>
+        </li>
+
+        <li class="item-menu">
+            <a href="../tabela/tabela-brasileirao.html">
+                <span class="icon"><i class="bi bi-skip-end-btn-fill"></i></span>
+                <span class="txt-link">Tabela</span>
+            </a>
+        </li>
+
+        <li class="item-menu">
+            <a href="../afiliados/index.html">
+                <span class="icon"><i class="bi bi-award"></i></span>
+                <span class="txt-link">Afiliados</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+    <script>
+        /*expandir e recolher menu lateral*/
+document.addEventListener("DOMContentLoaded", function() {
+    const btnExpandir = document.getElementById('btn-exp');
+    const menuLateral = document.querySelector('.menu-lateral');
+
+    btnExpandir.addEventListener('click', function() {
+        menuLateral.classList.toggle('expandir');
+    });
+});
+
+/*************FIM******************************************/
+        // Substitua CLIENT_ID pelo valor correspondente fornecido em seu dashboard na API-Futebol
+        const clientId = 'AUWN3PE9KKL7';
+
+        // Preenche o valor da chave do cliente no atributo data-client-id de todos os elementos com a classe .apifutebol-tabela
+        document.querySelectorAll('.apifutebol-tabela').forEach(element => {
+            element.dataset.clientId = clientId;
+        });
+    </script>
+
+</body>
+</html>

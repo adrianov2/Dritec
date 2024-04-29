@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dritec soccer</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</head>
+
+<body>
+<nav class="menu-lateral">
+    <div class="img-menu-lateral">
+        <img src="./img/05.png" alt="Descrição da imagem" class="logo">
+    </div>
+    <div class="btn-expandir">
+        <i class="bi bi-list" id="btn-exp"></i>
+    </div>
+
+    <ul>
+        <li class="item-menu ativo">
+            <a href="./index.html">
+                <span class="icon"><i class="bi bi-house-fill"></i></span>
+                <span class="txt-link">Home</span>
+            </a>
+        </li>
+
+        <li class="item-menu">
+            <a href="./bots/index.html">
+                <span class="icon"><i class="bi bi-robot"></i></span>
+                <span class="txt-link">Bots</span>
+            </a>
+        </li>
+
+        <li class="item-menu">
+            <a href="./time/Time.html">
+                <span class="icon"><i class="bi bi-person-lines-fill"></i></span>
+                <span class="txt-link">Time</span>
+            </a>
+        </li>
+
+        <li class="item-menu">
+            <a href="./tabela/tabela-brasileirao.html">
+                <span class="icon"><i class="bi bi-skip-end-btn-fill"></i></span>
+                <span class="txt-link">Tabela</span>
+            </a>
+        </li>
+
+        <li class="item-menu">
+            <a href="./afiliados/index.html">
+                <span class="icon"><i class="bi bi-award"></i></span>
+                <span class="txt-link">Afiliados</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h1>Artilharia do Campeonato</h1>
+    <div id="campeonatos">
+        <label for="selectCampeonato">Selecione o Campeonato:</label>
+        <select id="selectCampeonato">
+            <!-- Opções de campeonato serão adicionadas dinamicamente -->
+        </select>
+        <button id="btnObterArtilharia">Obter Artilharia</button>
+    </div>
+    <div id="artilharia"></div>
+    <div id="loading" class="loading" style="display: none;">
+        <img src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif" alt="Carregando...">
+    </div>
+</div>
+
+<script>
+    // Script JavaScript para expandir e recolher o menu lateral
+    document.addEventListener("DOMContentLoaded", function() {
+        const btnExpandir = document.getElementById('btn-exp');
+        const menuLateral = document.querySelector('.menu-lateral');
+
+        btnExpandir.addEventListener('click', function() {
+            menuLateral.classList.toggle('expandir');
+        });
+    });
+
+    // Função para obter a lista de campeonatos
+    function obterCampeonatos() {
+        fetch(`https://api.api-futebol.com.br/v1/campeonatos`, {
+            headers: {
+                'Authorization': `Bearer test_7ac3aa6a12bbe5e7aaa331a5edbc6b`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const selectCampeonato = document.getElementById('selectCampeonato');
+
+            data.forEach(campeonato => {
+                const option = document.createElement('option');
+                option.value = campeonato.campeonato_id;
+                option.textContent = campeonato.nome_popular;
+                selectCampeonato.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Erro ao obter a lista de campeonatos:', error);
+        });
+    }
+
+    // Função para obter a artilharia do campeonato selecionado
+    function obterArtilharia(campeonatoId) {
+        const artilhariaDiv = document.getElementById('artilharia');
+        const loadingDiv = document.getElementById('loading');
+
+        loadingDiv.style.display = 'block';
+
+        fetch(`https://api.api-futebol.com.br/v1/campeonatos/${campeonatoId}/artilharia`, {
+            headers: {
+                'Authorization': `Bearer test_7ac3aa6a12bbe5e7aaa331a5edbc6b`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            loadingDiv.style.display = 'none';
+
+            if (data && data.length > 0) {
+                artilhariaDiv.innerHTML = `
+                    <div class="artilharia">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Posição</th>
+                                    <th>Nome do Jogador</th>
+                                    <th>Posição</th>
+                                    <th>Time</th>
+                                    <th>Gols</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${data.map((jogador, index) => `
+                                    <tr>
+                                        <td>${index + 1}</td>
+                                        <td>${jogador.atleta.nome_popular}</td>
+                                        <td>${jogador.atleta.posicao.nome || '-'}</td>
+                                        <td>${jogador.time.nome_popular}</td>
+                                        <td>${jogador.gols}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            } else {
+                artilhariaDiv.innerHTML = '<p>Não foi possível encontrar a artilharia do campeonato.</p>';
+            }
+        })
+        .catch(error => {
+            loadingDiv.style.display = 'none';
+            console.error('Erro ao obter a artilharia do campeonato:', error);
+        });
+    }
+
+    // Event listener para o botão de obter artilharia
+    document.getElementById('btnObterArtilharia').addEventListener('click', () => {
+        const campeonatoId = document.getElementById('selectCampeonato').value;
+        obterArtilharia(campeonatoId);
+    });
+
+    // Chamada inicial para obter a lista de campeonatos
+    obterCampeonatos();
+</script>
+
+</body>
+</html>

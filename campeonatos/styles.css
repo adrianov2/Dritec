@@ -1,0 +1,214 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('../img/03.jpg'); /* Substitua 'sua-imagem-de-fundo.jpg' pelo caminho da sua imagem */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Adicionando transparência */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Ajustando a sombra */
+    margin-right: 15%;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.campeonatos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.campeonato {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.campeonato img {
+    display: block;
+    margin: 0 auto 10px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.campeonato h2 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.campeonato p {
+    margin-bottom: 5px;
+    color: #666;
+}
+
+
+header.expandido {
+    height: 80px;
+    width: calc(100% - 300px);
+    margin-left: 300px;
+    transition: width 0.5s, margin-left 0.5s;
+}
+
+.custom-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.logo {
+    text-align: center;
+}
+
+.logo-image {
+    width: 200px;
+    height: auto;
+}
+
+.header-text p {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav.menu-lateral {
+    width: 80px;
+    height: 100%;
+    background-color: #ecf0f1;
+    padding: 40px 1%;
+    background-color: rgba(67, 66, 68, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    transition: width 0.5s;
+}
+
+.img-menu-lateral {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1px;
+}
+
+.img-menu-lateral .logo {
+    width: 60px;
+    margin-bottom: 1px;
+    margin-top: -30px;
+}
+
+nav.menu-lateral.expandir {
+    width: 300px;
+}
+
+.btn-expandir {
+    width: 100%;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.btn-expandir > i {
+    color: #ecf0f1;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+ul {
+    height: 100%;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+}
+
+ul li.item-menu {
+    transition: 0.2s;
+    margin-bottom: 8px;
+    border-radius: 15px;
+}
+
+ul li.ativo,
+ul li.item-menu:hover {
+    background: #e6e1e1;
+    border-radius: 10px;
+    border-radius: 15px;
+}
+
+ul li.item-menu a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 15px 4%;
+    display: flex;
+    align-items: center;
+    line-height: 40px;
+    transition: color 0.3s;
+    border-radius: 15px;
+}
+
+ul li.item-menu a .txt-link {
+    margin-left: 20px;
+    transition: opacity 0.5s;
+    opacity: 0;
+}
+
+nav.menu-lateral.expandir .txt-link {
+    opacity: 1;
+}
+
+ul li.item-menu:hover a {
+    background-color: rgba(97, 99, 97, 0.4);
+}
+
+ul li.item-menu a .icon > i {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+
+nav.menu-lateral.expandir + .button-columns {
+    margin-left: 160px;
+    transition: margin-left 0.3s ease;
+    margin-left: 200px;
+}
+
+nav.menu-lateral + .button-columns {
+    margin-left: 50px;
+    transition: margin-left 0.3s ease;
+    margin-left: 100px;
+}
+
+nav.menu-lateral.expandir + .button-columns .button-column {
+    flex: 0 0 calc(23% - 10px);
+    max-width: calc(25% - 10px);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: margin-left 0.2s ease;
+}
+
+
+
+.menu-lateral.expandir + .partida {
+    margin-left: 300px; /* Acompanhar o movimento do menu lateral quando expandido */
+}
